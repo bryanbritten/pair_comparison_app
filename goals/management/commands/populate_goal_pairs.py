@@ -1,3 +1,4 @@
+import random
 from django.core.management.base import BaseCommand
 from goals.models import Goal, GoalPair
 from itertools import combinations
@@ -19,7 +20,9 @@ class Command(BaseCommand):
 
         # Generate all unique pairs of goals
         pair_count = 0
-        for goal1, goal2 in combinations(goals, 2):
+        goal_pairs = list(combinations(goals, 2))
+        random.shuffle(goal_pairs)
+        for goal1, goal2 in goal_pairs:
             # Create the pair only if it doesn't already exist
             _ = GoalPair.objects.create(goal1=goal1, goal2=goal2)
             pair_count += 1
