@@ -4,11 +4,11 @@ from goals.models import Goal, GoalPair
 def ChoiceChooser(request):
     goal_pair = GoalPair.objects.filter(seen=False).first()
     if not goal_pair:
-        top_5_goals = Goal.objects.filter(times_chosen__gte=1).order_by("-times_chosen")[:5]
-        for goal in top_5_goals:
+        goals = Goal.objects.filter(times_chosen__gte=1).order_by("-times_chosen")
+        for goal in goals:
             goal.percent_chosen = round(goal.times_chosen / goal.times_seen * 100, 0) if goal.times_seen else 0
         context = {
-            "top_5_goals": top_5_goals,
+            "goals": goals,
         }
         return render(request, "goals/completed.html", context)
 

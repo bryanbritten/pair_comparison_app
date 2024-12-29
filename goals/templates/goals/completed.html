@@ -11,9 +11,9 @@
 <body>
     <div id="results">
         <h1>Thank you for completing the survey!</h1>
-        <p>Here are your top 5 goals for the year:</p>
+        <p>Here's how your goals ranked:</p>
         <ul>
-            {% for goal in top_5_goals %}
+            {% for goal in goals %}
                 <li>{{ goal.title }} - {{ goal.percent_chosen }}% </li>
             {% endfor %}
         </ul>
