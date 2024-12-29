@@ -1,12 +1,22 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Done!</title>
+    <link rel="stylesheet" href="{% static 'goals/styles.css' %}">
+    <title>Survey Completed!</title>
 </head>
 <body>
-    <h1>Thank you for completing the survey!</h1>
-    <p>You have reviewed all possible goal combinations.</p>
+    <div id="results">
+        <h1>Thank you for completing the survey!</h1>
+        <p>Here are your top 5 goals for the year:</p>
+        <ul>
+            {% for goal in top_5_goals %}
+                <li>{{ goal.title }} - {{ goal.percent_chosen }}% </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

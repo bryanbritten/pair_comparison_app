@@ -3,6 +3,8 @@ from django.db import models
 class Goal(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
+    times_seen = models.SmallIntegerField(default=0)
+    times_chosen = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return f"{self.title}: {self.description}"
