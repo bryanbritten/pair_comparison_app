@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Buttons</title>
+    <link rel="stylesheet" href="{% static 'goals/styles.css' %}">
+</head>
+<body>
+    <div class="button-container">
+        <p class="prompt">Which of the following two goals would you rather complete?</p>
+        <form method="POST" action="{% url 'goals:submission' %}">
+            {% csrf_token %}
+            <button class="button" type="submit" name="choice" value="{{ choice1.id }}" title="{{ choice1.description }}">{{ choice1.title }}</button>
+            <button class="button" type="submit" name="choice" value="{{ choice2.id }}" title="{{ choice2.description }}">{{ choice2.title }}</button>
+        </form>
+    </div>
+</body>
+</html>
